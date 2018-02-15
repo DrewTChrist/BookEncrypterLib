@@ -13,15 +13,8 @@ namespace BookEncrypter
 
         public CodeBook(string book)
         {
-            BookMap = new Dictionary<string, List<int>>();
             Key = book.Split(null).ToList();
-            foreach(string s in Key)
-            {
-                if (!BookMap.Keys.Contains(s))
-                {
-                    BookMap.Add(s, Enumerable.Range(0, Key.Count).Where(i => Key[i] == s).ToList());
-                }
-            }
+            BookMap = Key.Select((n, i) => new { Value = n, Index = i }).GroupBy(a => a.Value).ToDictionary(g => g.Key, g => g.Select(a => a.Index).ToList());
         }
 
         public List<string> Key
