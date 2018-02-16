@@ -15,13 +15,13 @@ namespace BookEncrypter
         {
             CipherTextMessage result = new CipherTextMessage();
             List<string> wordlist = this.Text.Split(null).ToList();
+            Random rand = new Random();
             foreach(string s in wordlist)
             {
                 codebook.BookMap.TryGetValue(s, out List<int> value);
                 // Check if s is contained in the code book otherwise print -1
                 if (value != null && value.Any())
                 {
-                    Random rand = new Random();
                     result.Text += value[rand.Next(value.Count)];
                     result.Text += ' ';
                 }
