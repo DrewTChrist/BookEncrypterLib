@@ -19,7 +19,6 @@ namespace BookEncrypter
             foreach(string s in wordlist)
             {
                 codebook.BookMap.TryGetValue(s, out List<int> value);
-                // Check if s is contained in the code book otherwise print -1
                 if (value != null && value.Any())
                 {
                     result.Text += value[rand.Next(value.Count)];
