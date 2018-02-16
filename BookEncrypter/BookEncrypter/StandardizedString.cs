@@ -15,7 +15,7 @@ namespace BookEncrypter
         {
             removePunctuation(ref s);
             removeSpaces(ref s);
-            this.Text = s;
+            this.Text = s.Trim().ToLower();
 
         }
 
